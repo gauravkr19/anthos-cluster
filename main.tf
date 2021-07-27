@@ -21,7 +21,8 @@ module "project-services" {
     "anthosconfigmanagement.googleapis.com",
     "gkehub.googleapis.com",
     "monitoring.googleapis.com",
-    "logging.googleapis.com"
+    "logging.googleapis.com",
+    "anthosconfigmanagement.googleapis.com"
   ]
 }
 
