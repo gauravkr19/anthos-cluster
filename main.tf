@@ -133,6 +133,16 @@ module "anthos-gke" {
   ]
 }
 
+module "workload_identity" {
+  source              = "terraform-google-modules/kubernetes-engine/google//modules/workload-identity"
+  version             = "16.0.1"
+  project_id          = data.google_client_config.anthos.project
+  name                = google_service_account.service_account.account_id
+  namespace           = "demo-app"
+  use_existing_gcp_sa = true
+  use_existing_k8s_sa = false
+}
+
 # GH Secrets
 # resource "kubernetes_secret" "gh-secrets" {
 #   metadata {
