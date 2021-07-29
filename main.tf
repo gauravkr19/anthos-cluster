@@ -139,9 +139,16 @@ module "workload_identity" {
   version             = "16.0.1"
   project_id          = data.google_client_config.anthos.project
   name                = google_service_account.service_account.account_id
-  namespace           = "demo-app"
+  namespace           = kubernetes_service_account.ksa-demo-app-ns.metadata[0].namespace
   use_existing_gcp_sa = true
-  use_existing_k8s_sa = false
+  use_existing_k8s_sa = true
+}
+
+resource "kubernetes_service_account" "ksa-demo-app-ns" {
+  metadata {
+    name = google_service_account.service_account.account_id
+    namespace = demo-app
+  }
 }
 
 # GH Secrets
