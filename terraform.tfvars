@@ -1,4 +1,4 @@
-project_id               = "playground-s-11-3e6e1a11"
+project_id               = "bcm-pcidss-devops-gaurav"
 #tfstate_gcs_backend      = "playground-s-11-2b75ac12-tfstate"
 region                   = "us-east4"
 zones                    = ["us-east4-b"]
