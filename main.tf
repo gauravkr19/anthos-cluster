@@ -147,7 +147,13 @@ module "workload_identity" {
 resource "kubernetes_service_account" "ksa-demo-app-ns" {
   metadata {
     name = google_service_account.service_account.account_id
-    namespace = demo-app
+    namespace = kubernetes_namespace.demo-app-ns.metadata[0].name
+  }
+}
+
+resource "kubernetes_namespace" "demo-app-ns" {
+  metadata {
+     name = "demo-app"
   }
 }
 
