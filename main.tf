@@ -138,17 +138,10 @@ module "workload_identity" {
   source              = "terraform-google-modules/kubernetes-engine/google//modules/workload-identity"
   version             = "16.0.1"
   project_id          = data.google_client_config.anthos.project
-  name                = google_service_account.service_account.account_id
-  namespace           = kubernetes_service_account.ksa-demo-app-ns.metadata[0].namespace
-  use_existing_gcp_sa = true
-  use_existing_k8s_sa = true
-}
-
-resource "kubernetes_service_account" "ksa-demo-app-ns" {
-  metadata {
-    name = google_service_account.service_account.account_id
-    namespace = kubernetes_namespace.demo-app-ns.metadata[0].name
-  }
+  name                = "tekton-gke-deploy-task-sa"
+  namespace           = kubernetes_namespace.demo-app-ns.metadata[0].name
+  use_existing_gcp_sa = false
+  use_existing_k8s_sa = false
 }
 
 resource "kubernetes_namespace" "demo-app-ns" {
